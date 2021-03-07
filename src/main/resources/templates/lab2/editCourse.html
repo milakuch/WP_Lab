@@ -1,0 +1,33 @@
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <title>Create a New Student Page</title>
+</head>
+<body>
+<header>
+    <h1>Edit Course</h1>
+</header>
+<section>
+    <form  action="/courses/edit-form/{id}"  method="post">
+        <input type="hidden" name="courseID" th:value="${course.courseId}">
+        <label for='name'>Name:</label> <input id='name' th:value="${course.name}" type='text' name='name'/><br/>
+        <label for='description'>Description:</label><input id='description' th:value="${course.description}"type='text' name='description'/><br/>
+        <label for='teacher'>The chosen teacher is:</label><input id='teacher' th:value="${course.teacher.name}+' '+${course.teacher.surname}"type='text' name='teacher' disabled/><br/>
+        <br>
+        Please select an alternative:
+        <div th:each="teacherr : ${teachers}" >
+            <input name="teacherID" th:id= "teach" th:value="${teacherr.id}" type="radio" th:text="${teacherr.name}+' '+${teacherr.surname}" required>
+        </div>
+        <br>
+        <label for='currenttype'>The chosen type is:</label><input id='currenttype' th:value="${course.tip}"type='text' name='currenttype' disabled/><br/>
+        Select a type:
+        <div>
+            <input type="radio" name="tip" th:value="0" th:text="MANDATORY">
+            <input type="radio" name="tip" th:value="1" th:text="OPTIONAL">
+        </div>
+        <input type='submit' value='Submit'/>
+    </form>
+</section>
+</body>
+</html>

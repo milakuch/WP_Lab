@@ -1,0 +1,36 @@
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <title>Welcome and Choose a Course</title>
+    <style type="text/css">
+        body {
+            width: 800px;
+            margin: auto;
+        }
+    </style>
+</head>
+<body>
+<header>
+    <h1>Courses List</h1>
+</header>
+<main>
+    <h2>Choose course:</h2>
+    <form action="/AddStudent" method="get" >
+    <div th:each="course : ${courses}" >
+        <input name="courseID" th:id= "course" th:value="${course.courseId}" th:name="${course.name}" type="radio" th:text="${course.name}+' '+${course.tip}" required>
+        <a th:href="@{'/courses/delete/' + ${course.courseId}}" class="delete">Delete</a>
+        <a th:href="@{'/courses/edit-form/' + ${course.courseId}}" class="edit">Edit</a>
+    </div>
+
+    </div>
+    <br/>
+        <button type="submit" class="btn btn-default" > Submit </button>
+        <button  class="add" > <a href="/courses/add">Add new course</a> </button>
+<!--        <button  class="btn btn-default" > <a href="/courses/mandatory">Show Mandatory</a> </button>-->
+<!--        <button  class="btn btn-default" > <a href="/courses/optional">Show Optional</a> </button>-->
+        </form>
+    <a th:href="@{'/logout'}">Logout</a>
+</main>
+</body>
+</html>

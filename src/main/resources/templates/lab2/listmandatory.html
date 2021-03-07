@@ -1,0 +1,30 @@
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <title>Welcome and Choose a Course</title>
+    <style type="text/css">
+        body {
+            width: 800px;
+            margin: auto;
+        }
+    </style>
+</head>
+<body>
+<header>
+    <h1>Courses List</h1>
+</header>
+<main>
+    <h2>Choose course:</h2>
+    <form  action="/courses" method="get" >
+    <div th:each="course : ${courses}" >
+        <input name="courseID" th:id= "course" th:value="${course.courseId}" type="radio" th:text="${course.name}+' '+${course.tip}">
+    </div>
+
+    </div>
+    <br/>
+        <button type="submit" class="btn btn-default" > Back </button>
+        </form>
+</main>
+</body>
+</html>
